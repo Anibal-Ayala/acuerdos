@@ -64,7 +64,7 @@ function renderizarContratos() {
         ${contrato.nombre}
         (Vence: ${contrato.fechaVencimiento})
         <button class = "verDescripcion btn btn-success" >Ver Descripción</button> 
-
+         <button class = "modificarContrato  btn btn-warning">Modificar</button>
         <button class = "eliminarContrato  btn btn-danger">Eliminar</button>
         `;
         contratosList.appendChild(li);
@@ -100,6 +100,11 @@ function renderizarContratos() {
                 alert('contrato eliminado');
             }
         });
+
+
+
+
+
     });
 };
 
