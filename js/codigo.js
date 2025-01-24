@@ -6,7 +6,8 @@ const agregarBtn = document.getElementById( 'agregarContrato' );
 let contratos = [{
     nombre: "coca 1",
     fechaVencimiento :"2025-1.30",
-    descripcion :"descripcion del contrato 1  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium nemo recusandae rerum iure aliquid non qui, amet ipsam praesentium maxime laborum reprehenderit ipsum molestias porro eos. Alias, dicta? Repellat, id."
+    descripcion : "descripcion del contrato 1  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium nemo recusandae rerum iure aliquid non qui, amet ipsam praesentium maxime laborum reprehenderit ipsum molestias porro eos. Alias, dicta? Repellat, id." ,
+     img:"https://gallery.exphosted.com/upload/admin/2024/05/10/20240510055643-eae01f39.png"
 },
 
 
@@ -14,7 +15,9 @@ let contratos = [{
 {
     nombre: "ipusa 2",
     fechaVencimiento :"2025-1.30",
-    descripcion :"descripcion del contrato 2"
+    descripcion :"descripcion del contrato 2",
+   img:"https://upload.wikimedia.org/wikipedia/commons/c/cb/IPUSA.jpg"
+
 },
 
 
@@ -30,6 +33,7 @@ function renderizarContratos() {
         const li =
         document.createElement('li');
         li.innerHTML = `
+       <img src=" ${contrato.img}">
         ${contrato.nombre}
         (Vence: ${contrato.fechaVencimiento})
         <button class = "verDescripcion btn btn-success" >Ver Descripción</button> 
