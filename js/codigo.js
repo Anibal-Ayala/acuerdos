@@ -4,19 +4,46 @@ const agregarBtn = document.getElementById( 'agregarContrato' );
 
 
 let contratos = [{
-    nombre: "coca 1",
+    nombre: "Coca Cola",
     fechaVencimiento :"2025-1.30",
-    descripcion : "descripcion del contrato 1  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium nemo recusandae rerum iure aliquid non qui, amet ipsam praesentium maxime laborum reprehenderit ipsum molestias porro eos. Alias, dicta? Repellat, id." ,
+    descripcion : "descripcion del contrato 1: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium nemo recusandae rerum iure aliquid non qui, amet ipsam praesentium maxime laborum reprehenderit ipsum molestias porro eos. Alias, dicta? Repellat, id." ,
      img:"https://gallery.exphosted.com/upload/admin/2024/05/10/20240510055643-eae01f39.png"
 },
 
 
 
 {
-    nombre: "ipusa 2",
+    nombre: "Ipusa ",
     fechaVencimiento :"2025-1.30",
     descripcion :"descripcion del contrato 2",
    img:"https://upload.wikimedia.org/wikipedia/commons/c/cb/IPUSA.jpg"
+
+},
+
+
+{
+    nombre: "Pontyn",
+    fechaVencimiento :"2025-1.30",
+    descripcion :"descripcion del contrato 2",
+   img:"https://cdn.shopify.com/s/files/1/0406/1259/3831/files/Quimica_10_480x480.jpg?v=1691100167"
+
+},
+
+
+{
+    nombre: "L.Gross",
+    fechaVencimiento :"2025-1.30",
+    descripcion :"descripcion del contrato 2",
+   img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBdualSvMnaVKMm1HkkKZ_b9d0S7r86olo7g&s"
+
+},
+
+
+{
+    nombre: "Pepsico",
+    fechaVencimiento :"2025-1.30",
+    descripcion :"descripcion del contrato 2",
+   img:"https://logowik.com/content/uploads/images/pepsico4720.jpg"
 
 },
 
