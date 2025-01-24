@@ -71,6 +71,7 @@ ul{
         display: flex;
         flex-direction: column;
         align-items: center;
+        
       }
       
       h1 {
@@ -93,12 +94,13 @@ ul{
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin: 2rem;
   
 }
 
 .descripcion{
   z-index: 4;
-
+max-width: 80%;
   height: 500px;
   color: #fff;
   background-color: #1b1b32;
@@ -134,15 +136,13 @@ ul{
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         list-style-type: none;
         width: 100%;
-        display: flex ;
-        flex-direction: column;
-        align-items: baseline;
+      
       
     }
 
 
     .verDescripcion{
-        margin: 2rem;
+        margin: 1rem;
     }
 
 }
