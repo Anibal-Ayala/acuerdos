@@ -14,7 +14,7 @@ let contratos = [
   {
     id: 2,
     nombre: "Ipusa ",
-    fechaVencimiento: "2025-1-26",
+    fechaVencimiento: "2025-1-27",
     descripcion: "descripcion del contrato 2",
     img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/IPUSA.jpg",
   },
@@ -59,21 +59,6 @@ function renderizarContratos() {
         `;
     contratosList.appendChild(li);
 
-    const fechaVencimiento = new Date(contrato.fechaVencimiento);
-    const hoy = new Date();
-    const diferenciaEnDias = Math.ceil(
-      (fechaVencimiento - hoy) / (1000 * 60 * 60 * 24)
-    );
-
-    if (diferenciaEnDias === 7) {
-      alert("El contrato " + contrato.nombre + " esta próximo a vencer!!!!");
-    } else if (diferenciaEnDias < 7 && diferenciaEnDias > 0) {
-      alert(
-        "El contrato con " + contrato.nombre +  " vencerá en " +  diferenciaEnDias +  " dias!!"
-      );
-    } else if (diferenciaEnDias <= 0) {
-      alert("El contrato con " + contrato.nombre + " se encuentra vencido!! ");
-    }
 
     const verDescripcionBtn = li.querySelector(".verDescripcion");
     verDescripcionBtn.addEventListener("click", () => {
@@ -114,7 +99,40 @@ function renderizarContratos() {
   });
 }
 
+
+function verificarContratosVencidos (){
+
+contratos.forEach((contrato, index ) =>{
+    
+    const fechaVencimiento = new Date(contrato.fechaVencimiento);
+    const hoy = new Date();
+    const diferenciaEnDias = Math.ceil(
+      (fechaVencimiento - hoy) / (1000 * 60 * 60 * 24)
+    );
+
+    if (diferenciaEnDias === 7) {
+      alert("El contrato con " + contrato.nombre + " esta próximo a vencer!");
+    } else if (diferenciaEnDias < 7 && diferenciaEnDias > 0) {
+      alert(
+        "El contrato con " + contrato.nombre +  " vencerá en " +  diferenciaEnDias +  " dias!"
+      );
+    } else if (diferenciaEnDias <= 0) {
+      alert("El contrato con " + contrato.nombre + " se encuentra vencido! ❌ ");
+    }
+});
+
+
+}
+
+
+
+
+
+
+
 renderizarContratos();
+setTimeout(verificarContratosVencidos,3000)
+
 
 agregarBtn.addEventListener("click", () => {
   const nuevoNombre = prompt("Ingrese el nombre del nuevo contrato");
@@ -128,9 +146,11 @@ agregarBtn.addEventListener("click", () => {
       descripcion: nuevaDescripcion,
     };
     contratos.push(nuevoContrato);
-    renderizarContratos();
+   renderizarContratos();
+   setTimeout(verificarContratosVencidos,3000)
     alert("Contrato agregado con éxito");
   } else {
     alert("Por favor, complete todos los campos");
   }
 });
+ 
