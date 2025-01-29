@@ -1,47 +1,15 @@
 const contratosList = document.getElementById("contratos");
 const agregarBtn = document.getElementById("agregarContrato");
 
-let contratos = [
-  {
-    id: 1,
-    nombre: "Coca Cola",
-    fechaVencimiento: "2025-2-2",
-    descripcion: "Descripción de coca cola",
-    img: "https://gallery.exphosted.com/upload/admin/2024/05/10/20240510055643-eae01f39.png",
-  },
+let contratos = JSON.parse(localStorage.getItem('contratos'))||[];
 
-  {
-    id: 2,
-    nombre: "Ipusa ",
-    fechaVencimiento: "2025-1-27",
-    descripcion: "Descripción  del contrato 2",
-    img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/IPUSA.jpg",
-  },
 
-  {
-    id: 3,
-    nombre: "Pontyn",
-    fechaVencimiento: "2025-2-4",
-    descripcion: "Descripción  del contrato 2",
-    img: "https://cdn.shopify.com/s/files/1/0406/1259/3831/files/Quimica_10_480x480.jpg?v=1691100167",
-  },
 
-  {
-    id: 4,
-    nombre: "L.Gross",
-    fechaVencimiento: "2025-11-30",
-    descripcion: "Descripción  del contrato 2",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBdualSvMnaVKMm1HkkKZ_b9d0S7r86olo7g&s",
-  },
 
-  {
-    id: 5,
-    nombre: "Pepsico",
-    fechaVencimiento: "2025-5-30",
-    descripcion: "Descripción  del contrato 2",
-    img: "https://logowik.com/content/uploads/images/pepsico4720.jpg",
-  },
-];
+
+
+
+
 
 function renderizarContratos() {
   contratosList.innerHTML = "";
@@ -87,16 +55,24 @@ function renderizarContratos() {
         const index = contratos.indexOf(contrato);
         contratos.splice(index, 1);
         renderizarContratos();
-        alert("Contrato eliminado");
+        
+        guardarContratosEnLocalStorage ()
+alert("Contrato eliminado");
       }
     });
 
     const modificarBtn = li.querySelector(".modificarContrato");
     modificarBtn.addEventListener("click", () => {
       editarContrato(index);
-    });
+      guardarContratosEnLocalStorage ();
+    }
+  );
   });
 }
+
+
+
+
 
 
 function verificarContratosVencidos (){
@@ -128,6 +104,23 @@ contratos.forEach((contrato, index ) =>{
 }
 
 
+function guardarContratosEnLocalStorage () {
+  localStorage.setItem('contratos', JSON.stringify(contratos))
+}
+
+
+
+renderizarContratos();
+
+setTimeout(verificarContratosVencidos,3000)
+
+
+
+
+
+
+
+
 function editarContrato (index) {
 
   let contrato = contratos[index]
@@ -140,6 +133,7 @@ function editarContrato (index) {
     contrato.fechaVencimiento = nuevaFecha;
     alert('Contrato modificado con exito✅✅')
     renderizarContratos()
+    guardarContratosEnLocalStorage ()
   }else{
     alert('Por favor, complete todo los campos')
   }
@@ -148,8 +142,6 @@ function editarContrato (index) {
  
 
 
-renderizarContratos();
-setTimeout(verificarContratosVencidos,3000)
 
 
 agregarBtn.addEventListener("click", () => {
@@ -165,11 +157,13 @@ agregarBtn.addEventListener("click", () => {
     };
     contratos.push(nuevoContrato);
    renderizarContratos();
+
  
     alert("Contrato agregado con éxito✅✅");
   } else {
     alert("Por favor, complete todos los campos");
-  }
+  }   
+  guardarContratosEnLocalStorage();
 });
  
 
