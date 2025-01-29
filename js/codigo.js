@@ -99,12 +99,6 @@ function renderizarContratos() {
 }
 
 
-
-
-
-
-
-
 function verificarContratosVencidos (){
 
 contratos.forEach((contrato, index ) =>{
@@ -129,7 +123,7 @@ contratos.forEach((contrato, index ) =>{
       alert("El contrato con " + contrato.nombre + " se encuentra vencido! ❌ ");
     }
 });
-
+ 
 
 }
 

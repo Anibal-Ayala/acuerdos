@@ -10,7 +10,7 @@ const transporter =
     secure: false, 
     auth: {
         user: 'anibalayala1990@gmail.com',
-        pass: 'a9613245M!'
+        pass: ''
     }
 });
 
