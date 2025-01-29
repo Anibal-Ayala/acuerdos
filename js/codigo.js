@@ -6,8 +6,7 @@ let contratos = [
     id: 1,
     nombre: "Coca Cola",
     fechaVencimiento: "2025-2-2",
-    descripcion:
-      "descripcion del contrato 1: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium nemo recusandae rerum iure aliquid non qui, amet ipsam praesentium maxime laborum reprehenderit ipsum molestias porro eos. Alias, dicta? Repellat, id.",
+    descripcion: "Descripción de coca cola",
     img: "https://gallery.exphosted.com/upload/admin/2024/05/10/20240510055643-eae01f39.png",
   },
 
@@ -15,15 +14,15 @@ let contratos = [
     id: 2,
     nombre: "Ipusa ",
     fechaVencimiento: "2025-1-27",
-    descripcion: "descripcion del contrato 2",
+    descripcion: "Descripción  del contrato 2",
     img: "https://upload.wikimedia.org/wikipedia/commons/c/cb/IPUSA.jpg",
   },
 
   {
     id: 3,
     nombre: "Pontyn",
-    fechaVencimiento: "2025-2-3",
-    descripcion: "descripcion del contrato 2",
+    fechaVencimiento: "2025-2-4",
+    descripcion: "Descripción  del contrato 2",
     img: "https://cdn.shopify.com/s/files/1/0406/1259/3831/files/Quimica_10_480x480.jpg?v=1691100167",
   },
 
@@ -31,7 +30,7 @@ let contratos = [
     id: 4,
     nombre: "L.Gross",
     fechaVencimiento: "2025-11-30",
-    descripcion: "descripcion del contrato 2",
+    descripcion: "Descripción  del contrato 2",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBdualSvMnaVKMm1HkkKZ_b9d0S7r86olo7g&s",
   },
 
@@ -39,7 +38,7 @@ let contratos = [
     id: 5,
     nombre: "Pepsico",
     fechaVencimiento: "2025-5-30",
-    descripcion: "descripcion del contrato 2",
+    descripcion: "Descripción  del contrato 2",
     img: "https://logowik.com/content/uploads/images/pepsico4720.jpg",
   },
 ];
@@ -94,10 +93,16 @@ function renderizarContratos() {
 
     const modificarBtn = li.querySelector(".modificarContrato");
     modificarBtn.addEventListener("click", () => {
-      mostrarFormularioEdicion(index);
+      editarContrato(index);
     });
   });
 }
+
+
+
+
+
+
 
 
 function verificarContratosVencidos (){
@@ -113,9 +118,13 @@ contratos.forEach((contrato, index ) =>{
     if (diferenciaEnDias === 7) {
       alert("El contrato con " + contrato.nombre + " esta próximo a vencer!");
     } else if (diferenciaEnDias < 7 && diferenciaEnDias > 0) {
+
+        /*enviarCorreo(contrato)*/
       alert(
         "El contrato con " + contrato.nombre +  " vencerá en " +  diferenciaEnDias +  " dias!"
       );
+
+
     } else if (diferenciaEnDias <= 0) {
       alert("El contrato con " + contrato.nombre + " se encuentra vencido! ❌ ");
     }
@@ -125,9 +134,24 @@ contratos.forEach((contrato, index ) =>{
 }
 
 
+function editarContrato (index) {
 
+  let contrato = contratos[index]
 
+  let nuevaDescripcion = prompt('Ingrese la nueva descripción:', contrato.descripcion);
+  let nuevaFecha = prompt('Ingrese la nueva fecha de vencimiento', contrato.fechaVencimiento);
 
+  if(nuevaDescripcion !==null && nuevaFecha !==null){
+    contrato.descripcion = nuevaDescripcion;
+    contrato.fechaVencimiento = nuevaFecha;
+    alert('Contrato modificado con exito✅✅')
+    renderizarContratos()
+  }else{
+    alert('Por favor, complete todo los campos')
+  }
+}
+
+ 
 
 
 renderizarContratos();
@@ -148,9 +172,34 @@ agregarBtn.addEventListener("click", () => {
     contratos.push(nuevoContrato);
    renderizarContratos();
    setTimeout(verificarContratosVencidos,3000)
-    alert("Contrato agregado con éxito");
+    alert("Contrato agregado con éxito✅✅");
   } else {
     alert("Por favor, complete todos los campos");
   }
 });
  
+
+
+
+/*  function enviarCorreo(contrato) {
+  fetch('/enviar-correo', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'appliction/json'
+    },
+    body: JSON.stringify(contrato)
+  })
+  .then(response => {
+    if(!response.ok){
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch(error=>{
+    console.log('Error:', error);
+  })
+}
+*/
