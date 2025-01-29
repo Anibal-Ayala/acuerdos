@@ -171,7 +171,7 @@ agregarBtn.addEventListener("click", () => {
     };
     contratos.push(nuevoContrato);
    renderizarContratos();
-   setTimeout(verificarContratosVencidos,3000)
+ 
     alert("Contrato agregado con éxito✅✅");
   } else {
     alert("Por favor, complete todos los campos");
