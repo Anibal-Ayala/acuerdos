@@ -148,12 +148,14 @@ agregarBtn.addEventListener("click", () => {
   const nuevoNombre = prompt("Ingrese el nombre del nuevo contrato");
   const nuevaFecha = prompt("Ingrese la fecha de vencimiento(AAAA-MM-DD)");
   const nuevaDescripcion = prompt("Ingrese la descripción del contrato");
+  const nuevaImagen = prompt ("Ingrese la URL de la imagen(opcional)")
 
   if (nuevoNombre && nuevaFecha && nuevaDescripcion) {
     const nuevoContrato = {
       nombre: nuevoNombre,
       fechaVencimiento: nuevaFecha,
       descripcion: nuevaDescripcion,
+      img : nuevaImagen
     };
     contratos.push(nuevoContrato);
    renderizarContratos();
