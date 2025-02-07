@@ -1,15 +1,9 @@
+
+
 const contratosList = document.getElementById("contratos");
 const agregarBtn = document.getElementById("agregarContrato");
 
-let contratos = JSON.parse(localStorage.getItem('contratos'))||[];
-
-
-
-
-
-
-
-
+let contratos = JSON.parse(localStorage.getItem("contratos")) || [];
 
 function renderizarContratos() {
   contratosList.innerHTML = "";
@@ -25,7 +19,6 @@ function renderizarContratos() {
         <button class = "eliminarContrato  btn btn-danger">Eliminar</button>
         `;
     contratosList.appendChild(li);
-
 
     const verDescripcionBtn = li.querySelector(".verDescripcion");
     verDescripcionBtn.addEventListener("click", () => {
@@ -55,30 +48,22 @@ function renderizarContratos() {
         const index = contratos.indexOf(contrato);
         contratos.splice(index, 1);
         renderizarContratos();
-        
-        guardarContratosEnLocalStorage ()
-alert("Contrato eliminado");
+
+        guardarContratosEnLocalStorage();
+        alert("Contrato eliminado");
       }
     });
 
     const modificarBtn = li.querySelector(".modificarContrato");
     modificarBtn.addEventListener("click", () => {
       editarContrato(index);
-      guardarContratosEnLocalStorage ();
-    }
-  );
+      guardarContratosEnLocalStorage();
+    });
   });
 }
 
-
-
-
-
-
-function verificarContratosVencidos (){
-
-contratos.forEach((contrato, index ) =>{
-    
+function verificarContratosVencidos() {
+  contratos.forEach((contrato, index) => {
     const fechaVencimiento = new Date(contrato.fechaVencimiento);
     const hoy = new Date();
     const diferenciaEnDias = Math.ceil(
@@ -88,86 +73,106 @@ contratos.forEach((contrato, index ) =>{
     if (diferenciaEnDias === 7) {
       alert("El contrato con " + contrato.nombre + " esta próximo a vencer!");
     } else if (diferenciaEnDias < 7 && diferenciaEnDias > 0) {
-
-        /*enviarCorreo(contrato)*/
+      /*enviarCorreo(contrato)*/
       alert(
-        "El contrato con " + contrato.nombre +  " vencerá en " +  diferenciaEnDias +  " dias!"
+        "El contrato con " +
+          contrato.nombre +
+          " vencerá en " +
+          diferenciaEnDias +
+          " dias!"
       );
-
-
     } else if (diferenciaEnDias <= 0) {
-      alert("El contrato con " + contrato.nombre + " se encuentra vencido! ❌ ");
+      alert(
+        "El contrato con " + contrato.nombre + " se encuentra vencido! ❌ "
+      );
     }
-});
- 
-
+  });
 }
 
-
-function guardarContratosEnLocalStorage () {
-  localStorage.setItem('contratos', JSON.stringify(contratos))
+function guardarContratosEnLocalStorage() {
+  localStorage.setItem("contratos", JSON.stringify(contratos));
 }
-
-
 
 renderizarContratos();
 
-setTimeout(verificarContratosVencidos,3000)
+setTimeout(verificarContratosVencidos, 3000);
 
+function editarContrato(index) {
+  let contrato = contratos[index];
 
+  let nuevaDescripcion = prompt(
+    "Ingrese la nueva descripción:",
+    contrato.descripcion
+  );
+  let nuevaFecha ;
 
+  do {
+    nuevaFecha = prompt('Ingrese la nueva fecha (AAAA-MM-DD):', contrato.fechaVencimiento);
+      if(nuevaFecha===null){
+        return;
+      }
+    
+  } while(!/^\d{4}-\d{2}-\d{2}$/.test(nuevaFecha));
 
-
-
-
-
-function editarContrato (index) {
-
-  let contrato = contratos[index]
-
-  let nuevaDescripcion = prompt('Ingrese la nueva descripción:', contrato.descripcion);
-  let nuevaFecha = prompt('Ingrese la nueva fecha de vencimiento', contrato.fechaVencimiento);
-
-  if(nuevaDescripcion !==null && nuevaFecha !==null){
+  if (nuevaDescripcion !== null && nuevaFecha !== null) {
     contrato.descripcion = nuevaDescripcion;
     contrato.fechaVencimiento = nuevaFecha;
-    alert('Contrato modificado con exito✅✅')
-    renderizarContratos()
-    guardarContratosEnLocalStorage ()
-  }else{
-    alert('Por favor, complete todo los campos')
+    alert("Contrato modificado con exito✅✅");
+    renderizarContratos();
+    guardarContratosEnLocalStorage();
+  } else {
+    alert("Por favor, complete todo los campos");
   }
 }
-
- 
 
 
 
 
 agregarBtn.addEventListener("click", () => {
   const nuevoNombre = prompt("Ingrese el nombre del nuevo contrato");
-  const nuevaFecha = prompt("Ingrese la fecha de vencimiento(AAAA-MM-DD)");
+let nuevaFecha;
+
+
+do {
+  nuevaFecha = prompt('Ingrese la nueva fecha (AAAA-MM-DD):');
+    if(nuevaFecha===null){
+      return;
+    }
+  
+} while(!/^\d{4}-\d{2}-\d{2}$/.test(nuevaFecha));
   const nuevaDescripcion = prompt("Ingrese la descripción del contrato");
-  const nuevaImagen = prompt ("Ingrese la URL de la imagen(opcional)")
+  const nuevaImagen = prompt("Ingrese la URL de la imagen(opcional)");
 
   if (nuevoNombre && nuevaFecha && nuevaDescripcion) {
     const nuevoContrato = {
       nombre: nuevoNombre,
       fechaVencimiento: nuevaFecha,
       descripcion: nuevaDescripcion,
-      img : nuevaImagen
+      img: nuevaImagen,
     };
     contratos.push(nuevoContrato);
-   renderizarContratos();
+    renderizarContratos();
 
- 
     alert("Contrato agregado con éxito✅✅");
   } else {
     alert("Por favor, complete todos los campos");
-  }   
+  }
   guardarContratosEnLocalStorage();
 });
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -192,4 +197,20 @@ agregarBtn.addEventListener("click", () => {
     console.log('Error:', error);
   })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 */

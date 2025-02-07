@@ -15,31 +15,28 @@ h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
 li {
-    color: rgba(10, 10, 44, 0.918) ;
-    font-weight: bolder;
-    margin: 1rem;
+  color: rgba(10, 10, 44, 0.918);
+  font-weight: bolder;
+  margin: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   list-style-type: none;
   width: 100%;
-  
 }
 
-img{
-    width: 50px;
-    margin: 1rem;
+img {
+  width: 50px;
+  margin: 1rem;
 }
 
-ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.descripcion{
+.descripcion {
   z-index: 4;
 
   height: 500px;
@@ -49,102 +46,74 @@ ul{
   align-items: center;
   text-align: center;
   margin: 1rem;
- padding: 1rem;
- font-size: 1.2rem;
-
+  padding: 1rem;
+  font-size: 1.2rem;
 }
-
 
 .cerrar {
-    margin: 1rem;
- 
+  margin: 1rem;
 }
 
-.divBoton{
+.divBoton {
   margin: 1rem;
 }
 
 
 
-@media(min-width:700px){
+@media (min-width: 700px) {
+  .general {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  h1 {
+    color: rgba(10, 10, 44, 0.918);
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
 
-    .general {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-      }
-      
-      h1 {
-        color: rgba(10, 10, 44, 0.918);
-        font-weight: bolder;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-      }
-
-      
-
-
-
-img{
+  img {
     width: 50px;
     margin: 1rem;
-}
+  }
 
-ul{
+  ul {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     margin: 2rem;
-  
-}
+  }
 
-.descripcion{
-  z-index: 4;
-max-width: 80%;
-  height: 500px;
-  color: #fff;
-  background-color: #1b1b32;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 1rem;
- padding: 1rem;
- font-size: 1.2rem;
-
-}
-
-
-.cerrar {
+  .descripcion {
+    z-index: 4;
+    max-width: 80%;
+    height: 500px;
+    color: #fff;
+    background-color: #1b1b32;
+    display: flex;
+    align-items: center;
+    text-align: center;
     margin: 1rem;
- 
-}
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
 
+  .cerrar {
+    margin: 1rem;
+  }
 
+  li {
+    color: rgba(10, 10, 44, 0.918);
+    font-weight: bolder;
+    margin: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    list-style-type: none;
+    width: 100%;
+  }
 
-
-
-
-
-
-
-
-    li {
-
-        color: rgba(10, 10, 44, 0.918);
-        font-weight: bolder;
-        margin: 1rem;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        list-style-type: none;
-        width: 100%;
-      
-      
-    }
-
-
-    .verDescripcion{
-        margin: 1rem;
-    }
-
+  .verDescripcion {
+    margin: 1rem;
+  }
 }
