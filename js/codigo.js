@@ -69,10 +69,8 @@ function verificarContratosVencidos() {
     const diferenciaEnDias = Math.ceil(
       (fechaVencimiento - hoy) / (1000 * 60 * 60 * 24)
     );
-
-    if (diferenciaEnDias === 7) {
-      alert("El contrato con " + contrato.nombre + " esta próximo a vencer!");
-    } else if (diferenciaEnDias < 7 && diferenciaEnDias > 0) {
+    const diasRestantes = diferenciaEnDias  ;
+    if  (diasRestantes <= 7 && diasRestantes > 0) {
       /*enviarCorreo(contrato)*/
       alert(
         "El contrato con " +
@@ -81,7 +79,7 @@ function verificarContratosVencidos() {
           diferenciaEnDias +
           " dias!"
       );
-    } else if (diferenciaEnDias <= 0) {
+    } else if (diasRestantes <= 0) {
       alert(
         "El contrato con " + contrato.nombre + " se encuentra vencido! ❌ "
       );
@@ -104,15 +102,9 @@ function editarContrato(index) {
     "Ingrese la nueva descripción:",
     contrato.descripcion
   );
-  let nuevaFecha ;
+  let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):', contrato.fechaVencimiento); ;
 
-  do {
-    nuevaFecha = prompt('Ingrese la nueva fecha (AAAA-MM-DD):', contrato.fechaVencimiento);
-      if(nuevaFecha===null){
-        return;
-      }
-    
-  } while(!/^\d{4}-\d{2}-\d{2}$/.test(nuevaFecha));
+  
 
   if (nuevaDescripcion !== null && nuevaFecha !== null) {
     contrato.descripcion = nuevaDescripcion;
@@ -130,16 +122,10 @@ function editarContrato(index) {
 
 agregarBtn.addEventListener("click", () => {
   const nuevoNombre = prompt("Ingrese el nombre del nuevo contrato");
-let nuevaFecha;
+let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):');
 
 
-do {
-  nuevaFecha = prompt('Ingrese la nueva fecha (AAAA-MM-DD):');
-    if(nuevaFecha===null){
-      return;
-    }
-  
-} while(!/^\d{4}-\d{2}-\d{2}$/.test(nuevaFecha));
+
   const nuevaDescripcion = prompt("Ingrese la descripción del contrato");
   const nuevaImagen = prompt("Ingrese la URL de la imagen(opcional)");
 
