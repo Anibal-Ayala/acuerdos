@@ -18,9 +18,12 @@ h1 {
 li {
   color: rgba(10, 10, 44, 0.918);
   font-weight: bolder;
-  margin: 1rem;
+  margin-bottom: 10px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   list-style-type: none;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,01);
   width: 100%;
 }
 
@@ -30,11 +33,12 @@ img {
 }
 
 ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+list-style: none;
+padding: 0;
 }
+
+
+
 
 .descripcion {
   z-index: 4;
@@ -52,23 +56,22 @@ ul {
 
 
 
-.divBoton {
-  margin: 1rem;
-}
+
 
 
 
 form {
   display: flex;
   flex-direction: column;
-  gap : 15px;
+  gap : 10px;
   width: 90%;
   max-width: 500px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 10px;
 }
 
 label{
@@ -78,7 +81,7 @@ label{
 
 
 input[type= "text"] {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
@@ -86,15 +89,21 @@ input[type= "text"] {
 }
 
 button{
-  padding: 12px 20px;
+  padding: 8px 15px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: backgorund-color 0.3s ease;
-
+margin-right: 10px;
+margin: 10px;
   
+}
+
+
+button :hover{
+  background-color: #0056b3;
 }
 
 
@@ -108,7 +117,7 @@ button{
 
 
 .flatpickr-input{
-  padding: 10px;
+  padding: 8px;
   border : 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
@@ -126,7 +135,7 @@ button{
 
 
 .flatpickr-day{
-  padding: 8px;
+  padding: 5px;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;

@@ -64,8 +64,9 @@ function renderizarContratos() {
 
     const modificarBtn = li.querySelector(".modificarContrato");
     modificarBtn.addEventListener("click", () => {
-      editarContrato(index,);
+      editarContrato(index);
       modificarBtn.disabled = true;
+      modificarBtn.textContent = "Modificando..."
       guardarContratosEnLocalStorage();
     });
 
