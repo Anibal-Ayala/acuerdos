@@ -1,5 +1,6 @@
 
 
+
 const contratosList = document.getElementById("contratos");
 const agregarBtn = document.getElementById("agregarContrato");
 
@@ -10,10 +11,17 @@ function renderizarContratos() {
 
   contratos.forEach((contrato, index) => {
     const li = document.createElement("li");
+
+    const fechaVencimiento = new Date(contrato.fechaVencimiento);
+    const dia = fechaVencimiento.getDate();
+    const mes = fechaVencimiento.getMonth () + 1 
+    const anio = fechaVencimiento.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`
+
     li.innerHTML = `
        <img src=" ${contrato.img}">
         ${contrato.nombre}
-        (Vence: ${contrato.fechaVencimiento})
+        (Vence: ${fechaFormateada})
         <button class = "verDescripcion btn btn-success" >Ver Descripción</button> 
          <button class = "modificarContrato  btn btn-warning">Modificar</button>
         <button class = "eliminarContrato  btn btn-danger">Eliminar</button>
@@ -96,58 +104,143 @@ renderizarContratos();
 setTimeout(verificarContratosVencidos, 3000);
 
 function editarContrato(index) {
-  let contrato = contratos[index];
 
-  let nuevaDescripcion = prompt(
-    "Ingrese la nueva descripción:",
-    contrato.descripcion
-  );
-  let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):', contrato.fechaVencimiento); ;
+  let contrato = contratos [index];
 
-  
+  const nombreInput = document.createElement ("input");
+  nombreInput.type = "text";
+  nombreInput.value = contrato.nombre;
+  nombreInput.placeholder = "Ingrese el nuevo nombre";
 
-  if (nuevaDescripcion !== null && nuevaFecha !== null) {
-    contrato.descripcion = nuevaDescripcion;
-    contrato.fechaVencimiento = nuevaFecha;
-    alert("Contrato modificado con exito✅✅");
-    renderizarContratos();
-    guardarContratosEnLocalStorage();
-  } else {
-    alert("Por favor, complete todo los campos");
-  }
+
+  const fechaInput = document.createElement("input");
+  fechaInput.type = "texto";
+  fechaInput.value = contrato.fechaVencimiento;
+  fechaInput.placeholder = "Ingrese la nueva fecha (y-m-d)"
+  fechaInput.id = "fechaInputEditar";
+
+
+  const descripcionInput = document.createElement ("input");
+  descripcionInput.type = "text";
+  descripcionInput.value = contrato.descripcion;
+  descripcionInput.placeholder = "Ingrese la nueva descripción";
+
+
+  const imagenInput = document.createElement ("input");
+  imagenInput.type = "text";
+  imagenInput.value = contrato.img;
+  imagenInput.placeholder = "Ingrese la URL de la imagen (opcional)";
+
+
+  const formulario = document.createElement ("form");
+  formulario.appendChild (nombreInput);
+  formulario.appendChild(fechaInput);
+  formulario.appendChild (descripcionInput);
+  formulario.appendChild (imagenInput);
+
+  const guardarBtn = document.createElement ("button");
+  guardarBtn.textContent = "Guardar";
+  formulario.appendChild(guardarBtn);
+
+  formulario.addEventListener ("submit", (event)=>{
+    event.preventDefault ();
+
+    const nuevoNombre = nombreInput.value;
+    const nuevaFecha = fechaInput.value;
+    const nuevaDescripcion = descripcionInput.value;
+    const nuevaImagen = imagenInput.value;
+
+
+    if (nuevoNombre && nuevaFecha && nuevaDescripcion) {
+      contrato.nombre = nuevoNombre;
+      contrato.fechaVencimiento = nuevaFecha;
+      contrato.descripcion = nuevaDescripcion;
+      contrato.img = nuevaImagen;
+      formulario.remove()
+      alert("Contrato modificado con éxito ✅✅");
+      renderizarContratos();
+      guardarContratosEnLocalStorage();
+    } else{
+      alert("Por favor, complete todos los campos")
+    };
+  })
+
+
+  document.body.appendChild (formulario)
+
+  flatpickr("#fechaInputEditar", {
+    enableTime: false,
+    dateFormat: "m-d-Y"
+  })
 }
 
 
 
 
 agregarBtn.addEventListener("click", () => {
-  const nuevoNombre = prompt("Ingrese el nombre del nuevo contrato");
-let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):');
+  const nombreInput = document.createElement ("input");
+nombreInput.type = "text";
+nombreInput.placeholder = "Ingrese nombre del contrato";
+
+  const fechaInput = document.createElement ("input");
+  fechaInput.type = "text"
+  fechaInput.placeholder = "Ingrese la fecha de vencimiento (y-m-d)";
+  fechaInput.id = "fechaInput";
+
+  const descripcionInput = document.createElement ("input");
+  descripcionInput.type = "text";
+  descripcionInput.placeholder = "Ingrese la descripción";
+
+  const imagenInput = document.createElement ("input");
+  imagenInput.type = "text";
+  imagenInput.placeholder = "Ingrese la URL de la imagen (opcional)"
+
+
+  const formulario = document.createElement("form");
+  formulario.appendChild(nombreInput);
+  formulario.appendChild(fechaInput);
+  formulario.appendChild(descripcionInput);
+  formulario.appendChild(imagenInput);
+
+  const guardarBtn = document.createElement ("button");
+  guardarBtn.textContent = "Guardar";
+  formulario.appendChild (guardarBtn);
 
 
 
-  const nuevaDescripcion = prompt("Ingrese la descripción del contrato");
-  const nuevaImagen = prompt("Ingrese la URL de la imagen(opcional)");
+  formulario.addEventListener ("submit", (event) => {
+    event.preventDefault ();
 
-  if (nuevoNombre && nuevaFecha && nuevaDescripcion) {
-    const nuevoContrato = {
-      nombre: nuevoNombre,
-      fechaVencimiento: nuevaFecha,
-      descripcion: nuevaDescripcion,
-      img: nuevaImagen,
-    };
-    contratos.push(nuevoContrato);
-    renderizarContratos();
+    const nuevoNombre = nombreInput.value;
+    const nuevaFecha = fechaInput.value;
+    const nuevaDescripcion = descripcionInput.value;
+    const nuevaImagen = imagenInput.value;
 
-    alert("Contrato agregado con éxito✅✅");
-  } else {
-    alert("Por favor, complete todos los campos");
-  }
-  guardarContratosEnLocalStorage();
-});
+    if (nuevoNombre && nuevaFecha && nuevaDescripcion) {
+      const nuevoContrato = {
+        nombre: nuevoNombre,
+        fechaVencimiento: nuevaFecha,
+        descripcion: nuevaDescripcion,
+        img: nuevaImagen,
 
+      };
+       formulario.remove()
+      contratos.push (nuevoContrato);
+      renderizarContratos();
+      guardarContratosEnLocalStorage();
+      alert("Contrato agregado con éxito ✅✅")
+    } else {
+      alert("Por favor, complete todos los campos")
+      formulario.remove()
+    }
+  })
+document.body.appendChild (formulario);
+flatpickr("#fechaInput", {
+  enableTime: false,
+  dateFormat:"m-d-Y"
+})
 
-
+})
 
 
 
@@ -184,6 +277,64 @@ let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):');
   })
 }
 
+
+
+
+
+
+agregarBtn.addEventListener("click", () => {
+  const nuevoNombre = prompt("Ingrese el nombre del nuevo contrato");
+let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):');
+
+
+
+  const nuevaDescripcion = prompt("Ingrese la descripción del contrato");
+  const nuevaImagen = prompt("Ingrese la URL de la imagen(opcional)");
+
+  if (nuevoNombre && nuevaFecha && nuevaDescripcion) {
+    const nuevoContrato = {
+      nombre: nuevoNombre,
+      fechaVencimiento: nuevaFecha,
+      descripcion: nuevaDescripcion,
+      img: nuevaImagen,
+    };
+    contratos.push(nuevoContrato);
+    renderizarContratos();
+
+    alert("Contrato agregado con éxito✅✅");
+  } else {
+    alert("Por favor, complete todos los campos");
+  }
+  guardarContratosEnLocalStorage();
+});
+
+
+
+
+
+
+
+function editarContrato(index) {
+  let contrato = contratos[index];
+
+  let nuevaDescripcion = prompt(
+    "Ingrese la nueva descripción:",
+    contrato.descripcion
+  );
+  let nuevaFecha = prompt('Ingrese la nueva fecha (y-m-d):', contrato.fechaVencimiento); ;
+
+  
+
+  if (nuevaDescripcion !== null && nuevaFecha !== null) {
+    contrato.descripcion = nuevaDescripcion;
+    contrato.fechaVencimiento = nuevaFecha;
+    alert("Contrato modificado con exito✅✅");
+    renderizarContratos();
+    guardarContratosEnLocalStorage();
+  } else {
+    alert("Por favor, complete todo los campos");
+  }
+}
 
 
 
