@@ -64,12 +64,12 @@ function renderizarContratos() {
 
     const modificarBtn = li.querySelector(".modificarContrato");
     modificarBtn.addEventListener("click", () => {
-      editarContrato(index);
+      editarContrato(index,li);
       modificarBtn.disabled = true;
       modificarBtn.textContent = "Modificando..."
       guardarContratosEnLocalStorage();
     });
-
+contratosList.appendChild (li);
   });
 }
 
@@ -106,7 +106,7 @@ renderizarContratos();
 
 setTimeout(verificarContratosVencidos, 3000);
 
-function editarContrato(index) {
+function editarContrato(index, elementoLi) {
 
   let contrato = contratos [index];
 
@@ -160,6 +160,9 @@ function editarContrato(index) {
       contrato.descripcion = nuevaDescripcion;
       contrato.img = nuevaImagen;
       formulario.remove()
+      const modificarBtn = elementoLi.querySelector(".modificarContrato");
+      modificarBtn.disabled = false;
+      modificarBtn.textContent = "Modificar"
       alert("Contrato modificado con éxito ✅✅");
       renderizarContratos();
       guardarContratosEnLocalStorage();
@@ -169,7 +172,7 @@ function editarContrato(index) {
   })
 
 
-  document.body.appendChild (formulario)
+ elementoLi.appendChild (formulario);
 
   flatpickr("#fechaInputEditar", {
     enableTime: false,
