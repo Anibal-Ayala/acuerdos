@@ -184,6 +184,7 @@ function editarContrato(index, elementoLi) {
 
 
 agregarBtn.addEventListener("click", () => {
+
   const nombreInput = document.createElement ("input");
 nombreInput.type = "text";
 nombreInput.placeholder = "Ingrese nombre del contrato";
@@ -238,9 +239,13 @@ nombreInput.placeholder = "Ingrese nombre del contrato";
     } else {
       alert("Por favor, complete todos los campos")
       formulario.remove()
+     
     }
   })
-document.body.appendChild (formulario);
+
+ 
+
+  agregarBtn.parentNode.insertBefore(formulario, agregarBtn.nextSibling);
 flatpickr("#fechaInput", {
   enableTime: false,
   dateFormat:"m-d-Y"
