@@ -39,7 +39,7 @@ function renderizarContratos() {
       descripcionDiv.style.display = "block";
 
       const cerrarBtn = document.createElement("button");
-      cerrarBtn.textContent = " ❌";
+      cerrarBtn.textContent = "Cerrar";
       cerrarBtn.classList.add("cerrar");
       descripcionDiv.appendChild(cerrarBtn);
 
